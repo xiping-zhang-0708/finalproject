@@ -1,20 +1,21 @@
-Package: bst260project
-Title: project code and narrative
+Package: finalproject
+Title: BST 260 Final Project
 Version: 0.0.3
 Authors@R:
-    person(given = "yourfirstname",
-           family = "lastname",
+    person(given = "Xiping",
+           family = "Zhang",
            role = c("aut", "cre"),
-           email = "youremail@gmail.com",
-           comment = c(ORCID = "0000-0002-1825-0097"))
-Description: provide text on what your project emphasizes and 
-	accomplishes in three or more complete sentences.
+           email = "xiping.zhang@hsph.harvard.edu")
+Description: This package is developed for the BST 260 final project.
+    It provides functions and data for statistical analysis and
+    visualization. The project also includes documentation and
+    reproducible examples to demonstrate the analysis.
 Depends: R (>= 4.5.0)
 Suggests: knitr, testthat, rmarkdown, pkgdown
 License: Artistic-2.0
 VignetteBuilder: quarto
 Encoding: UTF-8
-URL: https://github.com/youreponame
-BugReports: https://github.com/youreponame/issues
+URL: https://github.com/xiping-zhang-0708/finalproject
+BugReports: https://github.com/xiping-zhang-0708/finalproject/issues
 Config/roxygen2/version: 8.1.1
 Roxygen: list(markdown=TRUE)
