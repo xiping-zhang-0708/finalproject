@@ -1,0 +1,200 @@
+---
+title: "BST 260 Final Project Proposal"
+subtitle: "Prepared for the BST260 Teaching Team, Fall 2026"
+author: "Xiping Zhang"
+date: "2026-11-18"
+format: html
+---
+
+# Exploring Public Health Risks: Individual Health Indicators and Disease Outbreaks in the United States
+
+## 1. Background and Motivation
+
+During my undergraduate studies, I had the opportunity to work on several research projects related to health and public health. In one of my previous applied regression projects, my classmates and I investigated how different health and disease indicators, including healthcare expenditure, maternal mortality, HIV prevalence, and undernourishment, were associated with life expectancy across countries. I also conducted a research project examining the possible mechanisms behind weight rebound, which further developed my interest in the relationship between individual health, biological responses, and lifestyle behaviors.
+
+Through these experiences, I became increasingly interested in public health, especially in understanding why health outcomes differ among individuals and populations. In my previous regression project, I particularly enjoyed the process of starting with a research question, exploring the available data, identifying potential relationships among variables, and using statistical models to interpret the findings. It was interesting to see how statistical analysis could help us understand patterns in health outcomes that might otherwise be difficult to recognize.
+
+Since entering the Health Data Science program at Harvard, I have had the opportunity to approach these questions from a broader data science perspective. Throughout BST 260, I have learned more about working with different data structures, cleaning and transforming datasets, using R for statistical analysis and visualization, and organizing research through reproducible workflows. These skills have also made me more aware of the importance of understanding where data come from, how they are collected, and what limitations may affect their interpretation.
+
+For this final project, I am eager to bring together what I have learned in BST 260 and the experience I gained from my previous research. I would like to build on my background in regression analysis while developing my skills in data cleaning, statistical modeling, and reproducible research.
+
+With this in mind, I decided to work with two datasets: the National Health and Nutrition Examination Survey (NHANES) and the CDC disease outbreak dataset provided in our course package as `waterborne`. I selected these datasets because they allow me to examine public health from two different perspectives. NHANES contains individual-level information about health measurements and demographic characteristics, while the CDC dataset records disease outbreaks across different locations and years.
+
+Through these two analyses, I hope to better understand how individual characteristics are associated with health outcomes and how reported disease outbreaks differ across transmission modes, geographic regions, and time.
+
+## 2. Research Questions and Objectives
+
+Based on these interests, I would like to address two research questions, each focusing on a different aspect of public health.
+
+### 2.1 Research Question 1: NHANES
+
+**How is body mass index (BMI) associated with systolic blood pressure among U.S. adults aged 20 and older, after adjusting for demographic and socioeconomic characteristics?**
+
+For this analysis, I will use BMI as the primary exposure variable and average systolic blood pressure as the outcome variable. I am interested in whether individuals with different BMI values tend to have different blood pressure levels and how this relationship changes after accounting for age, gender, race and ethnicity, and socioeconomic status.
+
+I would also like to examine whether the relationship between BMI and blood pressure is approximately linear and whether it differs across demographic groups.
+
+### 2.2 Research Question 2: CDC Disease Outbreak Data
+
+**How is the primary mode of disease transmission associated with the number of reported illnesses per outbreak in the United States, after accounting for calendar year and geographic region?**
+
+For the second analysis, I will focus on reported foodborne and waterborne disease outbreaks. My main interest is to examine whether the number of reported illnesses per outbreak differs between these two transmission categories. I would also like to investigate how outbreak patterns change over time and whether geographic differences can help explain some of the observed variation.
+
+### 2.3 Overall Objectives
+
+The overall objective of this project is to apply different statistical approaches to investigate two public health questions. The first analysis will focus on a continuous outcome measured at the individual level, while the second will examine a count outcome measured at the outbreak level.
+
+For both datasets, I intend to begin with data cleaning and exploratory analysis, followed by statistical modeling, model diagnostics, and interpretation of the results. I also hope to compare the challenges of working with these two types of datasets and explore how different statistical methods can be applied to different public health questions.
+
+## 3. Data Sources and Study Design
+
+### 3.1 Dataset 1: NHANES
+
+The first dataset comes from the National Health and Nutrition Examination Survey (NHANES), conducted by the Centers for Disease Control and Prevention (CDC). I will use the educational dataset available through the `NHANES` R package, which contains data derived from the 2009–2012 survey cycles.
+
+NHANES collects information about participants' demographic characteristics, health measurements, and health-related behaviors. For my analysis, the unit of observation will be an individual participant, and the study population will consist of adults aged 20 and older.
+
+I have already conducted a preliminary examination of the dataset. After restricting the sample to adults aged 20 and older, there are 7,235 observations. Among these observations, 264 have missing average systolic blood pressure measurements, 63 have missing BMI values, and 537 have missing poverty measurements. Since some observations may have missing values in multiple variables, I will further examine these patterns before determining the final sample used in the regression analysis.
+
+The study will follow a cross-sectional observational design, with the primary goal of examining the association between BMI and systolic blood pressure.
+
+### 3.2 Dataset 2: CDC Disease Outbreak Data
+
+The second dataset comes from the CDC National Outbreak Reporting System (NORS), which collects information about reported foodborne, waterborne, and other disease outbreaks in the United States. The dataset is available through our BST 260 course package as `waterborne`.
+
+Each observation represents a reported outbreak and contains information such as the year, month, state, primary transmission mode, disease etiology, and number of illnesses.
+
+I will primarily focus on reported foodborne and waterborne outbreaks with valid information on transmission mode and illness counts. The unit of analysis will therefore be an individual reported outbreak.
+
+Before conducting the analysis, I will examine the available reporting years, the completeness of the data, and the distribution of outbreaks across states. This will help me decide whether additional restrictions are needed to make meaningful comparisons between different transmission categories.
+
+## 4. Variable Definitions and Potential Confounders
+
+### 4.1 NHANES: BMI and Systolic Blood Pressure
+
+For the NHANES analysis, the primary outcome variable will be `BPSysAve`, which represents average systolic blood pressure measured in mmHg. Since blood pressure is measured numerically, I will treat it as a continuous outcome.
+
+The primary exposure variable will be `BMI`, measured in kg/m². I intend to treat BMI as a continuous variable in the main analysis, allowing me to estimate how average systolic blood pressure differs with changes in BMI.
+
+Based on my understanding of factors related to both body weight and cardiovascular health, I plan to adjust for the following potential confounders:
+
+- **Age:** A continuous numerical variable representing age in years.
+- **Gender:** A categorical variable representing the participant's recorded gender.
+- **Race1:** A categorical variable describing race and ethnicity.
+- **Poverty:** A numerical variable representing the family income-to-poverty ratio.
+
+I selected these variables because age, demographic characteristics, and socioeconomic conditions may be associated with both BMI and blood pressure. I will use these variables as the primary adjustment set and examine their relationships with the outcome during exploratory analysis.
+
+For missing values, I will first summarize the missingness in each variable and examine whether the missing observations are concentrated in particular demographic groups. The main regression analysis will use observations with complete information on the selected variables, and I will document the number of observations excluded.
+
+If the data support further investigation, I would also like to examine interaction terms between BMI and age or gender to see whether the association differs across groups.
+
+### 4.2 CDC Outbreak Data: Transmission Mode and Illness Count
+
+For the second dataset, the primary outcome variable will be `illnesses`, which records the number of reported illnesses associated with an outbreak. After converting the variable into a numeric format, it will be treated as a count outcome.
+
+The primary exposure variable will be `primary_mode`, a categorical variable describing the mode of disease transmission. I will focus on the `Food` and `Water` categories in the main comparison.
+
+I also plan to include calendar year and geographic region as adjustment variables. Calendar year may account for differences in reporting patterns and outbreak characteristics over time, while geographic region may capture some of the variation associated with environmental conditions and regional reporting practices.
+
+Before fitting the model, I will examine missing and invalid values, especially for illness counts, transmission categories, and location information. I will document how these observations are handled during data cleaning.
+
+## 5. Data Cleaning and Exploratory Data Analysis
+
+Following the approach I used in my previous regression project, I would like to begin by understanding the data before selecting statistical models. This includes examining variable distributions, identifying missing observations, and exploring relationships between variables through summary statistics and visualizations.
+
+### 5.1 NHANES Exploratory Analysis
+
+For NHANES, I will first examine the distributions of BMI and systolic blood pressure using summary statistics, histograms, and density plots.
+
+Next, I will compare blood pressure distributions across age groups, gender categories, and other demographic characteristics using boxplots and related visualizations.
+
+I will then construct scatterplots to examine the relationship between BMI and blood pressure. Adding fitted regression lines and smooth curves will help me understand whether the relationship appears approximately linear.
+
+I also intend to examine correlations among relevant numerical variables and investigate potential multicollinearity among the predictors.
+
+### 5.2 CDC Outbreak Data Exploratory Analysis
+
+The CDC outbreak dataset will require additional data preparation because the records are stored in a list structure and may contain different sets of variables.
+
+I will first convert these records into a consistent data frame and transform relevant variables into appropriate formats. In particular, the year, month, and reported illness counts will need to be checked and converted before analysis.
+
+After cleaning the dataset, I will summarize the number of reported outbreaks and illness counts by transmission mode, year, and geographic region.
+
+I would like to use time-series plots to examine changes in reported outbreaks over time, as well as boxplots and other distributional plots to compare illness counts across transmission categories.
+
+Since some outbreaks may involve substantially more illnesses than others, I will examine the distribution of illness counts carefully and consider how unusually large outbreaks may affect the statistical analysis.
+
+## 6. Proposed Statistical Analysis
+
+### 6.1 NHANES: Multiple Linear Regression
+
+For the first dataset, I plan to use multiple linear regression to investigate the association between BMI and systolic blood pressure.
+
+I will begin with a simple linear regression model using BMI as the only predictor. I will then extend the model by including age, gender, race and ethnicity, and poverty ratio.
+
+By comparing the unadjusted and adjusted models, I hope to examine how the estimated relationship between BMI and systolic blood pressure changes after accounting for the selected demographic and socioeconomic variables.
+
+Building on my previous regression project, I will use the Variance Inflation Factor (VIF) to examine multicollinearity among the predictors. I also plan to conduct model diagnostics using residual plots, Q–Q plots, and influential observation measures such as Cook's Distance.
+
+If the relationship between BMI and blood pressure appears nonlinear, I may consider spline terms or other transformations. I would also like to investigate a small number of interaction terms, particularly between BMI and age, if the exploratory analysis provides a reasonable basis for doing so.
+
+For model evaluation, I will report regression coefficients, confidence intervals, R-squared, and adjusted R-squared. In addition, I plan to calculate the Root Mean Squared Error (RMSE) and Mean Absolute Error (MAE) to evaluate prediction errors.
+
+If feasible, I will use cross-validation to examine the model's predictive performance on data not used for fitting. I am also interested in comparing observed and predicted blood pressure values to better understand how well the model captures the variation in the outcome.
+
+Because the original NHANES survey uses a complex sampling design, I will consider whether a survey-weighted analysis using `NHANESraw` can be included as a sensitivity analysis. The results from the educational dataset will be interpreted as exploratory associations.
+
+### 6.2 CDC Outbreak Data: Count Regression
+
+For the CDC dataset, I will begin by comparing the distributions of reported illness counts across foodborne and waterborne outbreaks.
+
+Since the outcome represents the number of illnesses associated with an outbreak, I plan to consider Poisson regression as an initial statistical model. The model will examine the association between transmission mode and expected illness count while adjusting for calendar year and geographic region.
+
+I will then examine whether the count data exhibit overdispersion. If the variance is substantially larger than the mean, I may consider negative binomial regression as an alternative.
+
+For the final model, I intend to report estimated coefficients, confidence intervals, and appropriate measures of model fit. I will also compare observed and model-predicted patterns to evaluate how well the model describes the data.
+
+I am particularly interested in understanding whether the differences between transmission categories remain after adjusting for time and geographic region.
+
+## 7. Expected Limitations
+
+Although both datasets provide useful information for studying public health, several limitations need to be considered.
+
+For NHANES, the cross-sectional design limits our ability to determine the temporal relationship between BMI and blood pressure. The analysis may also be affected by missing data and factors that are not included in the model, such as medication use and other underlying health conditions.
+
+Another consideration is that the educational NHANES dataset does not provide the same basis for population-level inference as an analysis that fully accounts for the original survey design. I will take this into account when interpreting the regression results.
+
+For the CDC outbreak dataset, the available records depend on outbreaks being detected, investigated, and reported. Differences in surveillance and reporting practices may affect comparisons across locations and years.
+
+In addition, unusually large outbreaks may influence the distribution of illness counts and the fitted regression models. I will examine these observations during the analysis and discuss their potential impact on the findings.
+
+These limitations will be considered when interpreting the results, particularly when distinguishing statistical associations from causal relationships.
+
+## 8. Project Organization and Expected Deliverables
+
+I plan to organize the final project as an R package containing two analytical Quarto vignettes.
+
+The first vignette will examine the relationship between BMI and systolic blood pressure using NHANES. The second will investigate differences in reported illness counts across disease transmission modes using the CDC outbreak dataset.
+
+To make the project more organized and easier to follow, I plan to divide each vignette into several sections, including an introduction, data description and cleaning, exploratory data analysis, statistical modeling, model diagnostics, results and interpretation, and a discussion of limitations. This structure will allow me to present the research process step by step, from understanding the data to interpreting the statistical findings.
+
+I also hope to apply the programming skills I have learned in BST 260 by writing a few reusable R functions for tasks such as generating summary statistics and creating visualizations. I plan to document these functions within the R package and organize the code so that the analyses can be reproduced and updated more easily.
+
+Finally, I will use `pkgdown` to generate a GitHub Pages website that presents the project overview, the two analytical vignettes, and the supporting package documentation.
+
+Through this project, I hope to build on my previous experience in regression analysis while extending my knowledge of working with different types of public health data. I am particularly interested in applying the statistical methods I already know to new research questions and using the data science tools introduced in BST 260 to make the entire analytical process more organized and reproducible.
+
+## 9. Data Sources
+
+### 9.1 National Health and Nutrition Examination Survey (NHANES)
+
+Centers for Disease Control and Prevention. National Health and Nutrition Examination Survey. Educational dataset available through the `NHANES` R package.
+
+https://cran.r-project.org/web/packages/NHANES/refman/NHANES.html
+
+### 9.2 CDC National Outbreak Reporting System (NORS)
+
+Centers for Disease Control and Prevention. National Outbreak Reporting System public data, accessed through the `waterborne` dataset provided in the BST 260 project package.
+
+https://data.cdc.gov/api/v3/views/5xkq-dg7x/query.json

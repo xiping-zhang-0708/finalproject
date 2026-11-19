@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Xiping Zhang">
+<meta name="dcterms.date" content="2026-11-18">
+
+<title>BST 260 Final Project Proposal</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="proposal_files/libs/clipboard/clipboard.min.js"></script>
+<script src="proposal_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="proposal_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="proposal_files/libs/quarto-html/popper.min.js"></script>
+<script src="proposal_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="proposal_files/libs/quarto-html/anchor.min.js"></script>
+<link href="proposal_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="proposal_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="proposal_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="proposal_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="proposal_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BST 260 Final Project Proposal</h1>
+<p class="subtitle lead">Prepared for the BST260 Teaching Team, Fall 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Xiping Zhang </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 18, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="exploring-public-health-risks-individual-health-indicators-and-disease-outbreaks-in-the-united-states" class="level1">
+<h1>Exploring Public Health Risks: Individual Health Indicators and Disease Outbreaks in the United States</h1>
+<section id="background-and-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="background-and-motivation">1. Background and Motivation</h2>
+<p>During my undergraduate studies, I had the opportunity to work on several research projects related to health and public health. In one of my previous applied regression projects, my classmates and I investigated how different health and disease indicators, including healthcare expenditure, maternal mortality, HIV prevalence, and undernourishment, were associated with life expectancy across countries. I also conducted a research project examining the possible mechanisms behind weight rebound, which further developed my interest in the relationship between individual health, biological responses, and lifestyle behaviors.</p>
+<p>Through these experiences, I became increasingly interested in public health, especially in understanding why health outcomes differ among individuals and populations. In my previous regression project, I particularly enjoyed the process of starting with a research question, exploring the available data, identifying potential relationships among variables, and using statistical models to interpret the findings. It was interesting to see how statistical analysis could help us understand patterns in health outcomes that might otherwise be difficult to recognize.</p>
+<p>Since entering the Health Data Science program at Harvard, I have had the opportunity to approach these questions from a broader data science perspective. Throughout BST 260, I have learned more about working with different data structures, cleaning and transforming datasets, using R for statistical analysis and visualization, and organizing research through reproducible workflows. These skills have also made me more aware of the importance of understanding where data come from, how they are collected, and what limitations may affect their interpretation.</p>
+<p>For this final project, I am eager to bring together what I have learned in BST 260 and the experience I gained from my previous research. I would like to build on my background in regression analysis while developing my skills in data cleaning, statistical modeling, and reproducible research.</p>
+<p>With this in mind, I decided to work with two datasets: the National Health and Nutrition Examination Survey (NHANES) and the CDC disease outbreak dataset provided in our course package as <code>waterborne</code>. I selected these datasets because they allow me to examine public health from two different perspectives. NHANES contains individual-level information about health measurements and demographic characteristics, while the CDC dataset records disease outbreaks across different locations and years.</p>
+<p>Through these two analyses, I hope to better understand how individual characteristics are associated with health outcomes and how reported disease outbreaks differ across transmission modes, geographic regions, and time.</p>
+</section>
+<section id="research-questions-and-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-and-objectives">2. Research Questions and Objectives</h2>
+<p>Based on these interests, I would like to address two research questions, each focusing on a different aspect of public health.</p>
+<section id="research-question-1-nhanes" class="level3">
+<h3 class="anchored" data-anchor-id="research-question-1-nhanes">2.1 Research Question 1: NHANES</h3>
+<p><strong>How is body mass index (BMI) associated with systolic blood pressure among U.S. adults aged 20 and older, after adjusting for demographic and socioeconomic characteristics?</strong></p>
+<p>For this analysis, I will use BMI as the primary exposure variable and average systolic blood pressure as the outcome variable. I am interested in whether individuals with different BMI values tend to have different blood pressure levels and how this relationship changes after accounting for age, gender, race and ethnicity, and socioeconomic status.</p>
+<p>I would also like to examine whether the relationship between BMI and blood pressure is approximately linear and whether it differs across demographic groups.</p>
+</section>
+<section id="research-question-2-cdc-disease-outbreak-data" class="level3">
+<h3 class="anchored" data-anchor-id="research-question-2-cdc-disease-outbreak-data">2.2 Research Question 2: CDC Disease Outbreak Data</h3>
+<p><strong>How is the primary mode of disease transmission associated with the number of reported illnesses per outbreak in the United States, after accounting for calendar year and geographic region?</strong></p>
+<p>For the second analysis, I will focus on reported foodborne and waterborne disease outbreaks. My main interest is to examine whether the number of reported illnesses per outbreak differs between these two transmission categories. I would also like to investigate how outbreak patterns change over time and whether geographic differences can help explain some of the observed variation.</p>
+</section>
+<section id="overall-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="overall-objectives">2.3 Overall Objectives</h3>
+<p>The overall objective of this project is to apply different statistical approaches to investigate two public health questions. The first analysis will focus on a continuous outcome measured at the individual level, while the second will examine a count outcome measured at the outbreak level.</p>
+<p>For both datasets, I intend to begin with data cleaning and exploratory analysis, followed by statistical modeling, model diagnostics, and interpretation of the results. I also hope to compare the challenges of working with these two types of datasets and explore how different statistical methods can be applied to different public health questions.</p>
+</section>
+</section>
+<section id="data-sources-and-study-design" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources-and-study-design">3. Data Sources and Study Design</h2>
+<section id="dataset-1-nhanes" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-1-nhanes">3.1 Dataset 1: NHANES</h3>
+<p>The first dataset comes from the National Health and Nutrition Examination Survey (NHANES), conducted by the Centers for Disease Control and Prevention (CDC). I will use the educational dataset available through the <code>NHANES</code> R package, which contains data derived from the 2009–2012 survey cycles.</p>
+<p>NHANES collects information about participants’ demographic characteristics, health measurements, and health-related behaviors. For my analysis, the unit of observation will be an individual participant, and the study population will consist of adults aged 20 and older.</p>
+<p>I have already conducted a preliminary examination of the dataset. After restricting the sample to adults aged 20 and older, there are 7,235 observations. Among these observations, 264 have missing average systolic blood pressure measurements, 63 have missing BMI values, and 537 have missing poverty measurements. Since some observations may have missing values in multiple variables, I will further examine these patterns before determining the final sample used in the regression analysis.</p>
+<p>The study will follow a cross-sectional observational design, with the primary goal of examining the association between BMI and systolic blood pressure.</p>
+</section>
+<section id="dataset-2-cdc-disease-outbreak-data" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-2-cdc-disease-outbreak-data">3.2 Dataset 2: CDC Disease Outbreak Data</h3>
+<p>The second dataset comes from the CDC National Outbreak Reporting System (NORS), which collects information about reported foodborne, waterborne, and other disease outbreaks in the United States. The dataset is available through our BST 260 course package as <code>waterborne</code>.</p>
+<p>Each observation represents a reported outbreak and contains information such as the year, month, state, primary transmission mode, disease etiology, and number of illnesses.</p>
+<p>I will primarily focus on reported foodborne and waterborne outbreaks with valid information on transmission mode and illness counts. The unit of analysis will therefore be an individual reported outbreak.</p>
+<p>Before conducting the analysis, I will examine the available reporting years, the completeness of the data, and the distribution of outbreaks across states. This will help me decide whether additional restrictions are needed to make meaningful comparisons between different transmission categories.</p>
+</section>
+</section>
+<section id="variable-definitions-and-potential-confounders" class="level2">
+<h2 class="anchored" data-anchor-id="variable-definitions-and-potential-confounders">4. Variable Definitions and Potential Confounders</h2>
+<section id="nhanes-bmi-and-systolic-blood-pressure" class="level3">
+<h3 class="anchored" data-anchor-id="nhanes-bmi-and-systolic-blood-pressure">4.1 NHANES: BMI and Systolic Blood Pressure</h3>
+<p>For the NHANES analysis, the primary outcome variable will be <code>BPSysAve</code>, which represents average systolic blood pressure measured in mmHg. Since blood pressure is measured numerically, I will treat it as a continuous outcome.</p>
+<p>The primary exposure variable will be <code>BMI</code>, measured in kg/m². I intend to treat BMI as a continuous variable in the main analysis, allowing me to estimate how average systolic blood pressure differs with changes in BMI.</p>
+<p>Based on my understanding of factors related to both body weight and cardiovascular health, I plan to adjust for the following potential confounders:</p>
+<ul>
+<li><strong>Age:</strong> A continuous numerical variable representing age in years.</li>
+<li><strong>Gender:</strong> A categorical variable representing the participant’s recorded gender.</li>
+<li><strong>Race1:</strong> A categorical variable describing race and ethnicity.</li>
+<li><strong>Poverty:</strong> A numerical variable representing the family income-to-poverty ratio.</li>
+</ul>
+<p>I selected these variables because age, demographic characteristics, and socioeconomic conditions may be associated with both BMI and blood pressure. I will use these variables as the primary adjustment set and examine their relationships with the outcome during exploratory analysis.</p>
+<p>For missing values, I will first summarize the missingness in each variable and examine whether the missing observations are concentrated in particular demographic groups. The main regression analysis will use observations with complete information on the selected variables, and I will document the number of observations excluded.</p>
+<p>If the data support further investigation, I would also like to examine interaction terms between BMI and age or gender to see whether the association differs across groups.</p>
+</section>
+<section id="cdc-outbreak-data-transmission-mode-and-illness-count" class="level3">
+<h3 class="anchored" data-anchor-id="cdc-outbreak-data-transmission-mode-and-illness-count">4.2 CDC Outbreak Data: Transmission Mode and Illness Count</h3>
+<p>For the second dataset, the primary outcome variable will be <code>illnesses</code>, which records the number of reported illnesses associated with an outbreak. After converting the variable into a numeric format, it will be treated as a count outcome.</p>
+<p>The primary exposure variable will be <code>primary_mode</code>, a categorical variable describing the mode of disease transmission. I will focus on the <code>Food</code> and <code>Water</code> categories in the main comparison.</p>
+<p>I also plan to include calendar year and geographic region as adjustment variables. Calendar year may account for differences in reporting patterns and outbreak characteristics over time, while geographic region may capture some of the variation associated with environmental conditions and regional reporting practices.</p>
+<p>Before fitting the model, I will examine missing and invalid values, especially for illness counts, transmission categories, and location information. I will document how these observations are handled during data cleaning.</p>
+</section>
+</section>
+<section id="data-cleaning-and-exploratory-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-exploratory-data-analysis">5. Data Cleaning and Exploratory Data Analysis</h2>
+<p>Following the approach I used in my previous regression project, I would like to begin by understanding the data before selecting statistical models. This includes examining variable distributions, identifying missing observations, and exploring relationships between variables through summary statistics and visualizations.</p>
+<section id="nhanes-exploratory-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="nhanes-exploratory-analysis">5.1 NHANES Exploratory Analysis</h3>
+<p>For NHANES, I will first examine the distributions of BMI and systolic blood pressure using summary statistics, histograms, and density plots.</p>
+<p>Next, I will compare blood pressure distributions across age groups, gender categories, and other demographic characteristics using boxplots and related visualizations.</p>
+<p>I will then construct scatterplots to examine the relationship between BMI and blood pressure. Adding fitted regression lines and smooth curves will help me understand whether the relationship appears approximately linear.</p>
+<p>I also intend to examine correlations among relevant numerical variables and investigate potential multicollinearity among the predictors.</p>
+</section>
+<section id="cdc-outbreak-data-exploratory-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="cdc-outbreak-data-exploratory-analysis">5.2 CDC Outbreak Data Exploratory Analysis</h3>
+<p>The CDC outbreak dataset will require additional data preparation because the records are stored in a list structure and may contain different sets of variables.</p>
+<p>I will first convert these records into a consistent data frame and transform relevant variables into appropriate formats. In particular, the year, month, and reported illness counts will need to be checked and converted before analysis.</p>
+<p>After cleaning the dataset, I will summarize the number of reported outbreaks and illness counts by transmission mode, year, and geographic region.</p>
+<p>I would like to use time-series plots to examine changes in reported outbreaks over time, as well as boxplots and other distributional plots to compare illness counts across transmission categories.</p>
+<p>Since some outbreaks may involve substantially more illnesses than others, I will examine the distribution of illness counts carefully and consider how unusually large outbreaks may affect the statistical analysis.</p>
+</section>
+</section>
+<section id="proposed-statistical-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="proposed-statistical-analysis">6. Proposed Statistical Analysis</h2>
+<section id="nhanes-multiple-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="nhanes-multiple-linear-regression">6.1 NHANES: Multiple Linear Regression</h3>
+<p>For the first dataset, I plan to use multiple linear regression to investigate the association between BMI and systolic blood pressure.</p>
+<p>I will begin with a simple linear regression model using BMI as the only predictor. I will then extend the model by including age, gender, race and ethnicity, and poverty ratio.</p>
+<p>By comparing the unadjusted and adjusted models, I hope to examine how the estimated relationship between BMI and systolic blood pressure changes after accounting for the selected demographic and socioeconomic variables.</p>
+<p>Building on my previous regression project, I will use the Variance Inflation Factor (VIF) to examine multicollinearity among the predictors. I also plan to conduct model diagnostics using residual plots, Q–Q plots, and influential observation measures such as Cook’s Distance.</p>
+<p>If the relationship between BMI and blood pressure appears nonlinear, I may consider spline terms or other transformations. I would also like to investigate a small number of interaction terms, particularly between BMI and age, if the exploratory analysis provides a reasonable basis for doing so.</p>
+<p>For model evaluation, I will report regression coefficients, confidence intervals, R-squared, and adjusted R-squared. In addition, I plan to calculate the Root Mean Squared Error (RMSE) and Mean Absolute Error (MAE) to evaluate prediction errors.</p>
+<p>If feasible, I will use cross-validation to examine the model’s predictive performance on data not used for fitting. I am also interested in comparing observed and predicted blood pressure values to better understand how well the model captures the variation in the outcome.</p>
+<p>Because the original NHANES survey uses a complex sampling design, I will consider whether a survey-weighted analysis using <code>NHANESraw</code> can be included as a sensitivity analysis. The results from the educational dataset will be interpreted as exploratory associations.</p>
+</section>
+<section id="cdc-outbreak-data-count-regression" class="level3">
+<h3 class="anchored" data-anchor-id="cdc-outbreak-data-count-regression">6.2 CDC Outbreak Data: Count Regression</h3>
+<p>For the CDC dataset, I will begin by comparing the distributions of reported illness counts across foodborne and waterborne outbreaks.</p>
+<p>Since the outcome represents the number of illnesses associated with an outbreak, I plan to consider Poisson regression as an initial statistical model. The model will examine the association between transmission mode and expected illness count while adjusting for calendar year and geographic region.</p>
+<p>I will then examine whether the count data exhibit overdispersion. If the variance is substantially larger than the mean, I may consider negative binomial regression as an alternative.</p>
+<p>For the final model, I intend to report estimated coefficients, confidence intervals, and appropriate measures of model fit. I will also compare observed and model-predicted patterns to evaluate how well the model describes the data.</p>
+<p>I am particularly interested in understanding whether the differences between transmission categories remain after adjusting for time and geographic region.</p>
+</section>
+</section>
+<section id="expected-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="expected-limitations">7. Expected Limitations</h2>
+<p>Although both datasets provide useful information for studying public health, several limitations need to be considered.</p>
+<p>For NHANES, the cross-sectional design limits our ability to determine the temporal relationship between BMI and blood pressure. The analysis may also be affected by missing data and factors that are not included in the model, such as medication use and other underlying health conditions.</p>
+<p>Another consideration is that the educational NHANES dataset does not provide the same basis for population-level inference as an analysis that fully accounts for the original survey design. I will take this into account when interpreting the regression results.</p>
+<p>For the CDC outbreak dataset, the available records depend on outbreaks being detected, investigated, and reported. Differences in surveillance and reporting practices may affect comparisons across locations and years.</p>
+<p>In addition, unusually large outbreaks may influence the distribution of illness counts and the fitted regression models. I will examine these observations during the analysis and discuss their potential impact on the findings.</p>
+<p>These limitations will be considered when interpreting the results, particularly when distinguishing statistical associations from causal relationships.</p>
+</section>
+<section id="project-organization-and-expected-deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="project-organization-and-expected-deliverables">8. Project Organization and Expected Deliverables</h2>
+<p>I plan to organize the final project as an R package containing two analytical Quarto vignettes.</p>
+<p>The first vignette will examine the relationship between BMI and systolic blood pressure using NHANES. The second will investigate differences in reported illness counts across disease transmission modes using the CDC outbreak dataset.</p>
+<p>To make the project more organized and easier to follow, I plan to divide each vignette into several sections, including an introduction, data description and cleaning, exploratory data analysis, statistical modeling, model diagnostics, results and interpretation, and a discussion of limitations. This structure will allow me to present the research process step by step, from understanding the data to interpreting the statistical findings.</p>
+<p>I also hope to apply the programming skills I have learned in BST 260 by writing a few reusable R functions for tasks such as generating summary statistics and creating visualizations. I plan to document these functions within the R package and organize the code so that the analyses can be reproduced and updated more easily.</p>
+<p>Finally, I will use <code>pkgdown</code> to generate a GitHub Pages website that presents the project overview, the two analytical vignettes, and the supporting package documentation.</p>
+<p>Through this project, I hope to build on my previous experience in regression analysis while extending my knowledge of working with different types of public health data. I am particularly interested in applying the statistical methods I already know to new research questions and using the data science tools introduced in BST 260 to make the entire analytical process more organized and reproducible.</p>
+</section>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">9. Data Sources</h2>
+<section id="national-health-and-nutrition-examination-survey-nhanes" class="level3">
+<h3 class="anchored" data-anchor-id="national-health-and-nutrition-examination-survey-nhanes">9.1 National Health and Nutrition Examination Survey (NHANES)</h3>
+<p>Centers for Disease Control and Prevention. National Health and Nutrition Examination Survey. Educational dataset available through the <code>NHANES</code> R package.</p>
+<p>https://cran.r-project.org/web/packages/NHANES/refman/NHANES.html</p>
+</section>
+<section id="cdc-national-outbreak-reporting-system-nors" class="level3">
+<h3 class="anchored" data-anchor-id="cdc-national-outbreak-reporting-system-nors">9.2 CDC National Outbreak Reporting System (NORS)</h3>
+<p>Centers for Disease Control and Prevention. National Outbreak Reporting System public data, accessed through the <code>waterborne</code> dataset provided in the BST 260 project package.</p>
+<p>https://data.cdc.gov/api/v3/views/5xkq-dg7x/query.json</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
